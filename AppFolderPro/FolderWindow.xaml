@@ -1,0 +1,52 @@
+﻿<Window x:Class="AppFolderPro.FolderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Mobile App Folder Style" Height="250" Width="300"
+        WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" Background="Transparent"
+        ShowInTaskbar="False"
+        Opacity="0.95">
+    <Window.Resources>
+        <Style x:Key="WindowStyleNoneStripBar" TargetType="{x:Type Window}">
+            <Setter Property="WindowChrome.WindowChrome">
+                <Setter.Value>
+                    <WindowChrome CaptionHeight="0"
+                                  CornerRadius="2"
+                                  GlassFrameThickness="0"
+                                  NonClientFrameEdges="None"
+                                  ResizeBorderThickness="3"/> 
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Border CornerRadius="20" BorderBrush="Gray" BorderThickness="0" Padding="6" Background="Gray">  
+        <Grid>
+            <!-- 아이콘 그리드 -->
+            <ItemsControl x:Name="AppFolderPanel">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <!-- 앱 아이콘을 WrapPanel에 배치 -->
+                        <WrapPanel HorizontalAlignment="Center" 
+                                   VerticalAlignment="Top" 
+                                   ItemWidth="80" ItemHeight="100"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <!-- 개별 아이콘 UI -->
+                        <Border Margin="10" CornerRadius="8"
+                                Cursor="Hand" MouseLeftButtonDown="Icon_Click" Focusable="True">
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                                <Image Source="{Binding Icon}" Width="50" Height="50" 
+                                       Margin="5"/>
+                                <TextBlock Text="{Binding Name}" FontSize="12" 
+                                           HorizontalAlignment="Center" 
+                                           Foreground="Black"/>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+    </Border>  
+</Window>
